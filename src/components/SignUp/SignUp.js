@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useFormik} from "formik";
 import * as Yup from 'yup';
 import {useNavigate} from "react-router-dom";
+import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -56,9 +57,12 @@ export default function SignUp() {
             lastName: "",
             email: "",
             password: "",
+            remember: false,
+            age: 10
         },
         validationSchema: SignupSchema,
         onSubmit: values => {
+            console.log(values)
             navigate("/dashboard")
         },
     })
@@ -144,9 +148,27 @@ export default function SignUp() {
                             </Grid>
                             <Grid item xs={12}>
                                 <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+
+                                    control={<Checkbox onChange={formSignUp.handleChange} name="remember" value="allowExtraEmails" color="primary" />}
                                     label="I want to receive inspiration, marketing promotions and updates via email."
                                 />
+                            </Grid>
+                            <Grid item xs={12}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={formSignUp.values.age}
+                                    label="Age"
+                                    name="age"
+                                    onChange={formSignUp.handleChange}
+                                >
+                                    <MenuItem value={10}>Ten</MenuItem>
+                                    <MenuItem value={20}>Twenty</MenuItem>
+                                    <MenuItem value={30}>Thirty</MenuItem>
+                                </Select>
+                            </FormControl>
                             </Grid>
                         </Grid>
                         <Button

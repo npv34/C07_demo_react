@@ -14,7 +14,7 @@ function App() {
 
 
           <Route path={"dashboard"} element={<Paperbase/>}>
-              <Route path={"users"} element={<UserList/>}></Route>
+              <Route path={"users/:id"} element={<UserList/>}></Route>
               <Route path={"tasks"} element={<TaskList/>}></Route>
           </Route>
 
