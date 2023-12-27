@@ -18,7 +18,8 @@ import TimerIcon from '@mui/icons-material/Timer';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PhonelinkSetupIcon from '@mui/icons-material/PhonelinkSetup';
 import {Link} from "react-router-dom";
-
+import {useSelector} from "react-redux"
+import {useEffect} from "react";
 const categories = [
     {
         id: 'Build',
@@ -67,6 +68,12 @@ const itemCategory = {
 export default function Navigator(props) {
     const { ...other } = props;
 
+    const auth = useSelector(state => state.auth)
+
+    useEffect(() => {
+        console.log(auth)
+    }, []);
+
     return (
         <Drawer variant="permanent" {...other}>
             <List disablePadding>
@@ -77,7 +84,7 @@ export default function Navigator(props) {
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
-                    <ListItemText>Project Overview</ListItemText>
+                    <ListItemText>{auth.username}</ListItemText>
                 </ListItem>
                 {categories.map(({ id, children }) => (
                     <Box key={id} sx={{ bgcolor: '#101F33' }}>
